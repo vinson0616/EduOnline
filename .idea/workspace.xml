@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4f8a7e61-63ad-462f-8456-41ffd617b5fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +33,10 @@
     </option>
   </component>
   <component name="ProjectId" id="1W4ExHmrrJMBJ25bAptty0EpWwN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -42,7 +46,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -52,18 +56,18 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Work\Python\EduOnline" />
+      <recent name="D:\Work\Python\EduOnline\templates" />
+      <recent name="D:\Work\Python\EduOnline\static\images" />
+      <recent name="D:\Work\Python\EduOnline\static" />
+      <recent name="D:\Work\Python\EduOnline\extra_apps" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Work\Python\EduOnline\apps\organization" />
       <recent name="D:\Work\Python\EduOnline\extra_apps" />
       <recent name="D:\Work\Python\EduOnline" />
       <recent name="D:\Work\Python\EduOnline\apps" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Work\Python\EduOnline\templates" />
-      <recent name="D:\Work\Python\EduOnline\static\images" />
-      <recent name="D:\Work\Python\EduOnline\static" />
-      <recent name="D:\Work\Python\EduOnline\extra_apps" />
-      <recent name="D:\Work\Python\EduOnline" />
     </key>
   </component>
   <component name="RunManager">
@@ -129,7 +133,8 @@
       <workItem from="1579419876053" duration="12035000" />
       <workItem from="1579432482134" duration="24270000" />
       <workItem from="1580097706114" duration="955000" />
-      <workItem from="1580120066132" duration="1139000" />
+      <workItem from="1580120066132" duration="1545000" />
+      <workItem from="1580122047195" duration="1450000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1580121085886</created>
@@ -138,7 +143,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580121085886</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="first commit">
+      <created>1580121224390</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580121224390</updated>
+    </task>
+    <task id="LOCAL-00003" summary="first commit">
+      <created>1580121308627</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580121308627</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,22 +176,23 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="362" y="75" key="#Options/0.0.1536.824/3840.0.1536.824@0.0.1536.824" timestamp="1578989502536" />
-    <state x="347" y="8" key="CommitChangelistDialog2" timestamp="1580121222927">
+    <state x="347" y="8" key="CommitChangelistDialog2" timestamp="1580121307022">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="347" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580121222927" />
+    <state x="347" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580121307022" />
     <state width="1062" height="452" key="DebuggerActiveHint" timestamp="1579432640322">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1062" height="452" key="DebuggerActiveHint/0.0.1536.824/3840.0.1536.824@0.0.1536.824" timestamp="1579432640322" />
-    <state x="550" y="172" key="FileChooserDialogImpl" timestamp="1578542695231">
+    <state x="550" y="172" key="FileChooserDialogImpl" timestamp="1580122238541">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="172" key="FileChooserDialogImpl/0.0.1536.824/3840.0.1536.824@0.0.1536.824" timestamp="1578542695231" />
-    <state x="604" y="309" key="Github.ShareDialog" timestamp="1580120833694">
+    <state x="550" y="172" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580122238541" />
+    <state x="604" y="309" key="Github.ShareDialog" timestamp="1580122799589">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="309" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1580120833694" />
+    <state x="604" y="309" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1580122799589" />
     <state x="503" y="119" key="Github.UntrackedFilesDialog" timestamp="1580120842498">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -217,19 +237,19 @@
     </state>
     <state width="1505" height="181" key="GridCell.Tab.1.right/0.0.1536.824/3840.0.1536.824@0.0.1536.824" timestamp="1579513157234" />
     <state width="1493" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578407795423" />
-    <state x="273" y="59" key="SettingsEditor" timestamp="1580121207932">
+    <state x="273" y="59" key="SettingsEditor" timestamp="1580122532737">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="273" y="59" key="SettingsEditor/0.0.1536.824/3840.0.1536.824@0.0.1536.824" timestamp="1578987610054" />
-    <state x="273" y="59" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580121207932" />
+    <state x="273" y="59" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580122532737" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1578552146432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824/3840.0.1536.824@0.0.1536.824" timestamp="1578552146432" />
-    <state x="568" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580121286466">
+    <state x="568" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580123077888">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="568" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1580121286466" />
+    <state x="568" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1580123077888" />
     <state x="604" y="150" key="ftp.server.browser" timestamp="1578989544769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

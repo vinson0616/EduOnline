@@ -53,7 +53,9 @@
                                     {% if has_fav_course %}已收藏{% else %}收藏{% endif %}
                                 </div>
                                 {% if has_buy_course %}
-                                    <div class="buy btn">开始学习</div>
+                                    <div class="buy btn">
+                                        <a style="color: white" href="{% url 'course:course_info' course.id %}">开始学习</a>
+                                    </div>
                                 {% else %}
                                     <div class="buy btn" id="jsBuy">
                                         {% if request.user.get_jifens >= course.jifen %}

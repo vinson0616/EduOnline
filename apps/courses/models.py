@@ -21,6 +21,9 @@ class Course(models.Model):
     category = models.CharField(max_length=20, verbose_name="课程类别", default="后端开发")
     tag = models.CharField(default="", verbose_name="课程标签", max_length=10)
     jifen = models.IntegerField(default=0, verbose_name="积分")
+    you_need_know = models.CharField(max_length=300, verbose_name="课程描述", default="")
+    teacher_tell = models.CharField(max_length=300, verbose_name="老师告诉你", default="")
+    notice = models.CharField(max_length=300, verbose_name="课程公告", default="")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
@@ -34,10 +37,14 @@ class Course(models.Model):
     def get_zj_nums(self):
         return self.lesson_set.all().count()
 
-
     # 获取学习用户
     def get_lean_users(self):
         return self.usercourse_set.all()[:5]
+
+    # 获取该课程的所有章节
+    def get_course_lesson(self):
+        return self.lesson_set.all()
+
 
 class Lesson(models.Model):
     course = models.ForeignKey(Course, verbose_name="课程", on_delete=models.CASCADE)
@@ -51,11 +58,16 @@ class Lesson(models.Model):
     def __str__(self):
         return self.name
 
+# 获取章节视频
+    def get_lesson_video(self):
+        return self.video_set.all()
 
 
 class Video(models.Model):
     lesson = models.ForeignKey(Lesson, verbose_name="章节名", on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name="视频名")
+    url = models.CharField(max_length=200, verbose_name="访问地址", default="")
+    learn_times = models.IntegerField(default=0, verbose_name="学习时长(分钟数)")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:

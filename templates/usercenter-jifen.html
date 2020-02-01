@@ -1,0 +1,35 @@
+{% extends 'usercenter-base.html' %}
+{% block title %}个人信息- 百世利教育在线{% endblock %}
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul class="crumbs">
+                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="/user/home/">个人中心</a>></li>
+                <li>我的积分</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block right_content %}
+    <div class="right">
+        <div class="personal_des ">
+            <div class="head" style="border:1px solid #eaeaea;">
+                <h1>我的积分</h1>
+            </div>
+            <div class="inforcon">
+                <div class="current-status">
+                    <h3><span>您当前赚取积分</span><a href="/help/cate/6" target="_blank">积分规则</a>
+                    <a> 积分可以当钱花哦, 100积分=1元人民币 </a></h3>
+                    <p>{{ request.user.get_jifens }}</p>
+                    <div class="link-box">
+
+                        <div class="buy btn"><a style="color: white" href="course-video.html">在线充值</a></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

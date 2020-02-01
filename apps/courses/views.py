@@ -4,7 +4,7 @@ from django.db.models import Q
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 
 from courses.models import Course
-from operation.models import UserFavorite
+from operation.models import UserFavorite, UserCourse
 
 
 class CourseListView(View):
@@ -50,12 +50,15 @@ class CourseDetailView(View):
 
         has_fav_course = False
         has_fav_org = False
+        has_buy_course = False
 
         if request.user.is_authenticated:
             if UserFavorite.objects.filter(user=request.user, fav_id=course.id, fav_type=1):
                 has_fav_course = True
             if UserFavorite.objects.filter(user=request.user, fav_id=course.course_org.id, fav_type=2):
                 has_fav_org = True
+            if UserCourse.objects.filter(user=request.user, course=course):
+                has_buy_course = True
 
         tag = course.tag
         if tag:
@@ -66,5 +69,6 @@ class CourseDetailView(View):
            "course" : course,
             "relate_courses": relate_courses,
             "has_fav_course": has_fav_course,
-            "has_fav_org": has_fav_org
+            "has_fav_org": has_fav_org,
+            "has_buy_course": has_buy_course
         })

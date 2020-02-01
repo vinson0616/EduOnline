@@ -33,17 +33,18 @@
                             <h1 title="{{course.name}}">{{course.name}}</h1>
                             <span class="key">{{course.desc}}</span>
                             <div class="prize">
-                                <span class="fl">难度：<i class="key">{{course.get_degree_display}}</i></span>
+                                <span class="fl">积分：<i class="key">{{course.jifen}}</i></span>
                                 <span class="fr">学习人数：{{course.students}}</span>
                             </div>
                             <ul class="parameter">
                                 <li><span class="pram word3">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</span><span>{{course.learn_times}}</span></li>
+                                <li><span class="pram word3">难&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度：</span><span>{{course.get_degree_display}}</span></li>
                                 <li><span class="pram word3">章&nbsp;节&nbsp;数：</span><span>{{course.get_zj_nums}}</span></li>
                                 <li><span class="pram word3">课程类别：</span><span title="">{{course.category}}</span></li>
                                 <li class="piclist"><span class="pram word4">学习用户：</span>
                                     {% for user_course in course.get_lean_users %}
-                                    <span class="pic"><img width="40" height="40"
-                                                           src="{{ MEDIA_URL }}{{user_course.user.image}}"/></span>
+                                        <span class="pic"><img width="40" height="40"
+                                                               src="{{ MEDIA_URL }}{{user_course.user.image}}"/></span>
                                     {% endfor %}
                                 </li>
                             </ul>
@@ -51,7 +52,18 @@
                                 <div class="btn colectgroupbtn" id="jsLeftBtn">
                                     {% if has_fav_course %}已收藏{% else %}收藏{% endif %}
                                 </div>
-                                <div class="buy btn"><a style="color: white" href="course-video.html">立即购买</a></div>
+                                {% if has_buy_course %}
+                                    <div class="buy btn">开始学习</div>
+                                {% else %}
+                                    <div class="buy btn" id="jsBuy">
+                                        {% if request.user.get_jifens >= course.jifen %}
+                                            立即购买
+                                        {% else %}
+                                            积分不足
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+
                             </div>
                         </div>
                         <div class="group-share-box">
@@ -85,7 +97,7 @@
                         </a>
                         <div class="btn  notlogin
 					     " data-favid="14" id="jsRightBtn">
-                              {% if has_fav_org %}已收藏{% else %}收藏{% endif %}
+                            {% if has_fav_org %}已收藏{% else %}收藏{% endif %}
                         </div>
                         <div class="clear">
                             <ul>
@@ -188,6 +200,42 @@
         //1表示课程收藏
         $('#jsLeftBtn').on('click', function () {
             add_fav($(this), {{course.id}}, 1);
+        });
+
+        //立即购买
+        $('#jsBuy').on('click',function () {
+            if({{ request.user.get_jifens }}<{{ course.jifen }}){
+                alert("你的积分不足，请充值")
+                window.location.href = "{% url 'users:myjifen' %}";
+            }else{
+                if(confirm("你确定要购买该课程吗？")){
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: "{% url 'users:buy_course' %}",
+                        data: {'course_id': {{course.id}}},
+                        async: true,
+                        beforeSend: function (xhr, settings) {
+                            xhr.setRequestHeader("X-CSRFToken", "{{csrf_token}}");
+                        },
+                        success: function (data) {
+                            if (data.status == 'fail') {
+                                if (data.msg == '用户未登录') {
+                                    window.location.href = "{% url 'login' %}";
+                                } else {
+                                    alert(data.msg)
+                                }
+
+                            } else if (data.status == 'success') {
+                                alert(data.msg)
+                                window.location.href= "{% url 'users:my_course' %}";
+                            }
+                        },
+                    });
+                }
+            }
+
+
         });
     </script>
 {% endblock %}

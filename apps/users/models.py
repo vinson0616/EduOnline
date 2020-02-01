@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+from django.db.models import Sum
 from django.contrib.auth.models import AbstractUser
 
 
@@ -23,6 +24,14 @@ class UserProfile(AbstractUser):
     def unread_nums(self):
         from operation.models import UserMessage
         return UserMessage.objects.filter(user=self.id, has_read=False).count()
+
+    # 获取用户的积分
+    def get_jifens(self):
+        from operation.models import JifenDetail
+        total_jifen = 0
+        all_jifens = JifenDetail.objects.filter(user=self).aggregate(sum=Sum('nums'))
+        total_jifen = all_jifens.get('sum')
+        return total_jifen
 
 class EmailVerifyCode(models.Model):
     code = models.CharField(max_length=20, verbose_name="验证码")

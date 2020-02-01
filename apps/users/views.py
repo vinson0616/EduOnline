@@ -3,7 +3,7 @@ import datetime
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse, HttpResponseRedirect
@@ -14,7 +14,7 @@ from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from .models import UserProfile,Banner
 from .forms import LoginForm, RegisterForm, UploadImageForm, ModifyPwdForm, UserInfoForm
 from utils.mixin_utils import LoginRequiredMixin
-from operation.models import UserCourse, UserFavorite, UserMessage
+from operation.models import UserCourse, UserFavorite, UserMessage,JifenDetail
 from organization.models import CourseOrg,Teacher
 from courses.models import Course
 
@@ -82,6 +82,13 @@ class RegisterView(View):
             user_profile.mobile = user_name
             user_profile.password = make_password(password)
             user_profile.save()
+
+            # 赠送注册积分100
+            user_jifen = JifenDetail()
+            user_jifen.user = user_profile
+            user_jifen.type = "zj"
+            user_jifen.nums = 100
+            user_jifen.save()
 
             # 写入欢迎注册消息
             user_message = UserMessage()
@@ -227,6 +234,51 @@ class MyMessageView(LoginRequiredMixin,View):
         return render(request,'usercenter-message.html', {
             "messages": messages
         })
+
+
+# 个人中心  我的积分
+class MyJifenView(LoginRequiredMixin,View):
+
+    def get(self, request):
+        total_jifen = 0
+        all_jifens = JifenDetail.objects.filter(user=request.user).aggregate(sum=Sum('nums'))
+        total_jifen = all_jifens.get('sum')
+        return render(request, 'usercenter-jifen.html', {
+            'total_jifen': total_jifen
+        })
+
+
+# 我的购买课程
+class UserCourseView(LoginRequiredMixin, View):
+
+    def post(self, request):
+        course_id = request.POST.get('course_id', "")
+        # 判断用户是否登录
+        if not request.user.is_authenticated:
+            return HttpResponse('{"status":"fail", "msg":"用户未登录"}', content_type='application/json')
+        exist_course = Course.objects.get(id=int(course_id))
+        if exist_course:
+            exist_user_course = UserCourse.objects.filter(user=request.user, course=exist_course)
+            if not exist_user_course:
+                # 扣除积分
+                if request.user.get_jifens() >= exist_course.jifen:
+                    jifenDetail = JifenDetail()
+                    jifenDetail.user = request.user
+                    jifenDetail.type = "xf"
+                    jifenDetail.nums = -exist_course.jifen
+                    jifenDetail.desc = "购买课程 [{0}]".format(exist_course.name)
+                    jifenDetail.save()
+                    user_course = UserCourse()
+                    user_course.user = request.user
+                    user_course.course = exist_course
+                    user_course.save()
+                    return HttpResponse('{"status":"success", "msg":"该课程购买成功"}', content_type='application/json')
+                else:
+                    return HttpResponse('{"status":"fail", "msg":"购买失败, 积分不足"}', content_type='application/json')
+            else:
+                return HttpResponse('{"status":"fail", "msg":"该课程重复购买"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status":"fail", "msg":"无效的课程"}', content_type='application/json')
 
 
 # 首页

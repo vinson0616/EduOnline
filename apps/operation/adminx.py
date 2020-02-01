@@ -1,6 +1,6 @@
 import xadmin
 
-from .models import UserAsk, UserCourse, UserMessage, CourseComments, UserFavorite
+from .models import UserAsk, UserCourse, UserMessage, CourseComments, UserFavorite, JifenDetail
 
 
 class UserAskAdmin(object):
@@ -33,8 +33,15 @@ class UserFavoriteAdmin(object):
     list_filter = ['user', 'fav_id', 'fav_type', 'add_time']
 
 
+class JifenDetailAdmin(object):
+    list_display = ['user', 'type', 'nums', 'add_time']
+    search_fileds = ['user', 'type', 'nums', 'add_time']
+    list_filter = ['user', 'type', 'nums', 'add_time']
+
+
 xadmin.site.register(UserAsk, UserAskAdmin)
 xadmin.site.register(UserCourse, UserCourseAdmin)
 xadmin.site.register(UserMessage, UserMessageAdmin)
 xadmin.site.register(CourseComments, CourseCommentsAdmin)
 xadmin.site.register(UserFavorite, UserFavoriteAdmin)
+xadmin.site.register(JifenDetail, JifenDetailAdmin)

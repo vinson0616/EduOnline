@@ -6132,6 +6132,66 @@ footer .footer .line {
     border-top: 0;
 }
 
+.current-status{
+    position: relative;
+    padding: 30px;
+    background-color: #f3f3f3;
+    margin-top: 30px;
+}
+
+.current-status h3 span {
+    font-size: 18px;
+    line-height: 20px;
+    color: #14191e;
+}
+
+.current-status p {
+    font-size: 48px;
+    line-height: 50px;
+    color: #ff7802;
+    margin-top: 20px;
+}
+.current-status h3{
+    height: 20px;
+    text-align: left;
+}
+
+.current-status h3 a {
+    font-size: 14px;
+    line-height: 16px;
+    color: #b5b9bc;
+    margin-left: 10px;
+}
+
+.current-status .link-box a {
+    font-size: 18px;
+    color: #ff7802;
+    line-height: 20px;
+    text-align: left;
+}
+
+.current-status .link-box {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
+
+.current-status .link-box .buy {
+    width: 180px;
+    background: #ff7800;
+}
+
+.current-status .link-box .btn {
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    float: left;
+    margin: 5px;
+    cursor: pointer;
+}
+
 .messagelist .messages {
     color: #585858;
     margin: 5px 0;

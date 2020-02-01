@@ -28,6 +28,19 @@ class CourseComments(models.Model):
         verbose_name_plural = verbose_name
 
 
+class JifenDetail(models.Model):
+    user = models.ForeignKey(UserProfile, verbose_name="用户", on_delete=models.CASCADE)
+    type = models.CharField(max_length=50, verbose_name="积分类别", default='zj',
+                            choices=(('zj', '注册'), ('jl', '奖励'), ('yq', '邀请'), ('cz', '充值'), ('xf', '消费'), ('tk', '退款')))
+    nums = models.IntegerField(default=0, verbose_name="积分")
+    desc = models.CharField(max_length=300, verbose_name="积分说明", default="")
+    add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
+
+    class Meta:
+        verbose_name = "积分明细"
+        verbose_name_plural = verbose_name
+
+
 class UserFavorite(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name="用户", on_delete=models.CASCADE)
     fav_id = models.IntegerField(default=0, verbose_name="数据id")

@@ -281,6 +281,15 @@ class UserCourseView(LoginRequiredMixin, View):
             return HttpResponse('{"status":"fail", "msg":"无效的课程"}', content_type='application/json')
 
 
+# 在线充值
+class MyPayView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        return render(request,"usercenter-mypay.html",{
+
+        })
+
+
 # 首页
 class IndexView(View):
 

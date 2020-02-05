@@ -27,6 +27,9 @@ class CourseComments(models.Model):
         verbose_name = "课程评论"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.course.name
+
 
 class JifenDetail(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name="用户", on_delete=models.CASCADE)
@@ -40,6 +43,9 @@ class JifenDetail(models.Model):
         verbose_name = "积分明细"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.desc
+
 
 class UserFavorite(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name="用户", on_delete=models.CASCADE)
@@ -50,6 +56,9 @@ class UserFavorite(models.Model):
     class Meta:
         verbose_name = "用户收藏"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.user.username
 
 
 class UserMessage(models.Model):
@@ -62,14 +71,20 @@ class UserMessage(models.Model):
         verbose_name = "用户消息"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.message
+
 
 class UserCourse(models.Model):
-    user = models.ForeignKey(UserProfile, verbose_name="用户", on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, verbose_name="课程", on_delete=models.CASCADE)
-    add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
+    user = models.ForeignKey(UserProfile, verbose_name="购买用户", on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, verbose_name="已购买课程", on_delete=models.CASCADE)
+    add_time = models.DateTimeField(default=datetime.now, verbose_name="购买时间")
 
     class Meta:
-        verbose_name = "用户课程"
+        verbose_name = "购买课程"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.course.name
 
 

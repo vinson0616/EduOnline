@@ -1,6 +1,9 @@
 from datetime import datetime
 
 from django.db import models
+from django.utils.safestring import mark_safe
+
+from DjangoUeditor.models import UEditorField
 
 from organization.models import CourseOrg, Teacher
 
@@ -10,7 +13,7 @@ class Course(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="讲师", null=True, blank=True)
     name = models.CharField(max_length=50, verbose_name="课程名")
     desc = models.CharField(max_length=300, verbose_name="课程描述")
-    detail = models.TextField(verbose_name="课程详情")
+    detail = UEditorField(verbose_name="课程详情", width=800, height=300, imagePath="courses/ueditor/", filePath="courses/ueditor/", default='')
     is_banner = models.BooleanField(default=False, verbose_name="是否轮播")
     degree = models.CharField(verbose_name="难度", choices=(('cj', "初级"),('zj', "中级"), ('gj', "高级")), max_length=10)
     learn_times = models.IntegerField(default=0, verbose_name="学习时长(分钟数)")
@@ -36,6 +39,8 @@ class Course(models.Model):
     # 获取课程章节数
     def get_zj_nums(self):
         return self.lesson_set.all().count()
+    get_zj_nums.short_description = "章节数"
+
 
     # 获取学习用户
     def get_lean_users(self):
@@ -45,6 +50,14 @@ class Course(models.Model):
     def get_course_lesson(self):
         return self.lesson_set.all()
 
+
+# 轮播课程
+class BannerCourse(Course):
+
+    class Meta:
+        verbose_name = "轮播课程"
+        verbose_name_plural = verbose_name
+        proxy = True
 
 class Lesson(models.Model):
     course = models.ForeignKey(Course, verbose_name="课程", on_delete=models.CASCADE)
@@ -74,6 +87,9 @@ class Video(models.Model):
         verbose_name = "视频"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
+
 
 class CourseResource(models.Model):
     course = models.ForeignKey(Course, verbose_name="课程", on_delete=models.CASCADE)
@@ -84,3 +100,6 @@ class CourseResource(models.Model):
     class Meta:
         verbose_name = "课程资源"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name

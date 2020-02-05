@@ -2,7 +2,7 @@ from django.urls import path, include,re_path
 
 from users.views import UserInfoView, UploadImageView, UpdatePwdView, MyCourseView
 from users.views import MyFavOrgView, MyFavTeacherView, MyFavCourseView, MyMessageView, MyJifenView
-from users.views import LogoutView, UserCourseView
+from users.views import LogoutView, UserCourseView, MyPayView
 
 
 
@@ -27,8 +27,10 @@ urlpatterns = [
     path('mymessage/', MyMessageView.as_view(), name="mymessage"),
     # 个人中心 我的积分
     path('myjifen/', MyJifenView.as_view(), name="myjifen"),
+    # 个人中心 在线充值
+    path('mypay/', MyPayView.as_view(), name="mypay"),
     # 退出登录
     path('logout/', LogoutView.as_view(), name="logout"),
-
+    # 购买课程
     path('buy/course/', UserCourseView.as_view(), name="buy_course"),
 ]

@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="74c70417-4a8f-4407-a4a4-ad8ff2259603" name="47.104.226.120" url="http://47.104.226.120">
-        <fileTransfer host="47.104.226.120" port="22" rootFolder="/root/release" accessType="SFTP">
+        <fileTransfer host="47.104.226.120" port="22" rootFolder="/root/EduOnline" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

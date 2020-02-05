@@ -128,11 +128,11 @@ if __name__ == "__main__":
 
     alipay = AliPay(
         appid="2016080600180695",
-        app_notify_url="http://projectsedus.com/",
+        app_notify_url="http://127.0.0.1:8000/trade/alipay/return/",
         app_private_key_path=u"../trade/keys/private_2048.txt",
         alipay_public_key_path="../trade/keys/alipay_key_2048.txt",  # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
         debug=True,  # 默认False,
-        return_url="http://47.92.87.172:8000/"
+        return_url="http://127.0.0.1:8000/trade/alipay/return/"
     )
 
     o = urlparse(return_url)
@@ -143,11 +143,11 @@ if __name__ == "__main__":
         processed_query[key] = value[0]
     print (alipay.verify(processed_query, ali_sign))
 
-    # url = alipay.direct_pay(
-    #     subject="测试订单",
-    #     out_trade_no="202002021288822",
-    #     total_amount=120,
-    #     return_url="http://47.92.87.172:8000/"
-    # )
-    # re_url = "https://openapi.alipaydev.com/gateway.do?{data}".format(data=url)
-    # print(re_url)
+    url = alipay.direct_pay(
+         subject="测试订单",
+         out_trade_no="202002021288812232",
+         total_amount=120,
+         return_url="http://127.0.0.1:8000/trade/alipay/return/"
+    )
+    re_url = "https://openapi.alipaydev.com/gateway.do?{data}".format(data=url)
+    print(re_url)

@@ -51,7 +51,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'captcha',
     'pure_pagination',
-    'utils'
+    'utils',
+    'rest_framework',
+    'trade',
+    'order',
+    'DjangoUeditor'
 ]
 
 AUTH_USER_MODEL = "users.UserProfile"
@@ -97,8 +101,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eduonline',
         'USER': 'root',
-        'PASSWORD':'vinson', #'CHENjia520%',
-        'HOST': '127.0.0.1' #'47.104.226.120'
+        'PASSWORD':'vinson', #'CHENjia520%'   #vinson,
+        'HOST': '127.0.0.1' #'47.104.226.120  #127.0.0.1'
     }
 }
 
@@ -153,3 +157,6 @@ STATICFILES_DIRS = (
 MEDIA_URL ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# 支付宝相关的配置
+private_key_path = os.path.join(BASE_DIR, 'apps/trade/keys/private_2048.txt')
+ali_pub_key_path = os.path.join(BASE_DIR, 'apps/trade/keys/alipay_key_2048.txt')

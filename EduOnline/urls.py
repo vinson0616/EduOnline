@@ -51,6 +51,14 @@ urlpatterns = [
     # 用户 相关url配置
     path("users/", include('users.urls', namespace="users")),
 
+    # 支付相关的url配置
+    path("trade/", include('trade.urls', namespace="trade")),
+
+    # 订单相关的url配置
+    path("order/", include('order.urls', namespace="order")),
+
+    # 富文本相关url
+    path('ueditor/', include('DjangoUeditor.urls')),
 ]
 
 
